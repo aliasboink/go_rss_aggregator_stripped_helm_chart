@@ -35,7 +35,7 @@ Common labels
 */}}
 {{- define "aggregator.labels" -}}
 helm.sh/chart: {{ include "aggregator.chart" . }}
-{{ include "aggregator.selectorLabels" . }}
+{{ include "aggregator.selectorLabels" (dict "ctx" .) }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -46,8 +46,11 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "aggregator.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "aggregator.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/name: {{ include "aggregator.name" .ctx }}
+app.kubernetes.io/instance: {{ .ctx.Release.Name }}
+{{- if .component }}
+app.kubernetes.io/component: {{ .component }}
+{{- end }}
 {{- end }}
 
 {{/*
