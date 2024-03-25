@@ -5,10 +5,10 @@ metadata:
   labels:
     {{- include "aggregator.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ .Values.frontend.service.type }}
   ports:
-    - port: 3000
-      targetPort: 3000
+    - port: {{ .Values.frontend.service.port }}
+      targetPort: {{ .Values.frontend.port }}
       protocol: TCP
       name: http
   selector:
