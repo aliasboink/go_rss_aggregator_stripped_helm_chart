@@ -26,6 +26,12 @@ spec:
             - name: PORT
               value: "{{ .Values.backend.port }}"
             - name: DB_URL
-              value: "{{ .Values.backend.dbUrl }}"
+              valueFrom:
+                secretKeyRef:
+                  name: go-rss-aggregator-stripped-backend
+                  key: DB_URL
             - name: API_KEY
-              value: "{{ .Values.backend.apiKey }}"
+              valueFrom:
+                secretKeyRef:
+                  name: go-rss-aggregator-stripped-backend
+                  key: API_KEY
