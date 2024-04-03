@@ -22,3 +22,6 @@ spec:
             - name: http
               containerPort: {{ .Values.backend.port }}
               protocol: TCP
+          env:
+            - name: TEST
+              value: "testi"
