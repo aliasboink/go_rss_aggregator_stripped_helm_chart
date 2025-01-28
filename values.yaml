@@ -1,8 +1,6 @@
 backend:
   replicas: 1
   port: 80
-  dbUrl: ""
-  apiKey: ""
 
   image:
     repository: agg
